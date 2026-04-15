@@ -19,28 +19,41 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
       background: #F8F8FC; color: #1A1A2E; height: 100%;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;
     }
-
     .screen {
       max-width: 480px; margin: 0 auto;
       padding: max(20px, env(safe-area-inset-top)) 16px max(48px, calc(env(safe-area-inset-bottom) + 20px));
     }
+    .title  { font-size: 28px; font-weight: 700; letter-spacing: -.5px; }
+    .sub    { font-size: 14px; color: #6B6B8A; margin-top: 4px; }
+    .sec    { font-size: 18px; font-weight: 700; margin: 20px 0 12px; }
+    .card   { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px;
+              box-shadow: 0 1px 4px rgba(0,0,0,.06); }
 
-    /* ── Typography ── */
-    .title   { font-size: 28px; font-weight: 700; letter-spacing: -.5px; }
-    .sub     { font-size: 14px; color: #6B6B8A; margin-top: 4px; }
-    .sec     { font-size: 18px; font-weight: 700; margin: 20px 0 12px; }
+    /* ── User switcher ── */
+    .user-toggle {
+      display: flex; background: #E8E8F0; border-radius: 12px; padding: 3px;
+      margin: 14px 0 0;
+    }
+    .user-btn {
+      flex: 1; padding: 9px; border: none; border-radius: 9px; font-size: 14px;
+      font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s;
+      background: transparent; color: #6B6B8A;
+    }
+    .user-btn.active { background: #fff; color: #1A1A2E; box-shadow: 0 1px 4px rgba(0,0,0,.12); }
 
-    /* ── Cards ── */
-    .card    { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px;
-               box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    /* ── Goal chip ── */
+    .goal-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #FFF3E0; border-radius: 20px; padding: 6px 12px;
+      font-size: 12px; font-weight: 600; color: #E65100; margin-top: 10px;
+    }
 
     /* ── Week card ── */
     .week-card {
       background: #534AB7; border-radius: 20px;
-      padding: 24px 20px; text-align: center; margin: 20px 0 14px;
+      padding: 24px 20px; text-align: center; margin: 14px 0 14px;
     }
     .wc-label { color: rgba(255,255,255,.7); font-size: 13px; margin-bottom: 12px; }
     .wc-row   { display: flex; align-items: center; justify-content: center; gap: 24px; }
@@ -48,7 +61,6 @@
       width: 44px; height: 44px; border-radius: 50%; border: none;
       background: rgba(255,255,255,.2); color: #fff; font-size: 26px;
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: opacity .15s;
     }
     .wc-btn:disabled { opacity: .3; cursor: default; }
     .wc-num   { color: #fff; font-size: 52px; font-weight: 700; line-height: 1; }
@@ -64,13 +76,17 @@
     .pn-title   { font-size: 13px; font-weight: 700; color: #3C3489; margin-bottom: 4px; }
     .pn-body    { font-size: 13px; color: #534AB7; line-height: 1.5; }
 
+    /* ── Andy phase note ── */
+    .phase-note.andy { background: #FFF3E0; }
+    .phase-note.andy .pn-title { color: #BF360C; }
+    .phase-note.andy .pn-body  { color: #E65100; }
+
     /* ── Day card ── */
     .day-card {
       background: #fff; border-radius: 16px; margin-bottom: 10px;
       display: flex; align-items: center; overflow: hidden;
       box-shadow: 0 1px 4px rgba(0,0,0,.06); cursor: pointer;
-      -webkit-user-select: none; user-select: none;
-      transition: transform .1s;
+      -webkit-user-select: none; user-select: none; transition: transform .1s;
     }
     .day-card:active { transform: scale(.98); }
     .day-bar  { width: 6px; align-self: stretch; flex-shrink: 0; }
@@ -85,15 +101,11 @@
     .day-meta { font-size: 12px; color: #A0A0B8; }
     .day-chev { font-size: 22px; color: #A0A0B8; padding-right: 14px; }
 
-    /* ── Settings icon ── */
     .hdr-wrap { position: relative; }
     .gear-btn {
       position: absolute; top: 0; right: 0; background: none; border: none;
-      font-size: 20px; cursor: pointer; padding: 4px; color: #A0A0B8;
-      line-height: 1;
+      font-size: 20px; cursor: pointer; padding: 4px; color: #A0A0B8; line-height: 1;
     }
-
-    /* ── Progress button ── */
     .progress-btn {
       display: block; width: 100%; margin-top: 12px;
       background: #fff; border: 1.5px solid #534AB7; border-radius: 16px;
@@ -101,15 +113,11 @@
       font-size: 15px; font-weight: 600; color: #534AB7; font-family: inherit;
     }
     .progress-btn:active { background: #EEEDFE; }
-
-    /* ── Back button ── */
     .back-btn {
       background: none; border: none; color: #534AB7;
       font-size: 15px; font-weight: 600; cursor: pointer;
       padding: 0; margin-bottom: 14px; font-family: inherit;
     }
-
-    /* ── Workout day header ── */
     .day-hdr {
       border-radius: 14px; padding: 14px 16px; margin-bottom: 16px;
       display: flex; align-items: center; gap: 12px;
@@ -117,8 +125,6 @@
     .day-dot  { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
     .dh-title { font-size: 16px; font-weight: 700; }
     .dh-sub   { font-size: 12px; margin-top: 2px; opacity: .8; }
-
-    /* ── Exercise card ── */
     .ex-card  { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px;
                 box-shadow: 0 1px 4px rgba(0,0,0,.06); }
     .ex-hdr   { display: flex; align-items: flex-start; margin-bottom: 14px; }
@@ -129,8 +135,6 @@
       padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
       cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap;
     }
-
-    /* ── Set table ── */
     .set-hdr  { display: grid; grid-template-columns: 34px 1fr 1.1fr 1fr; gap: 4px; margin-bottom: 8px; }
     .sh-cell  { font-size: 10px; color: #A0A0B8; font-weight: 600; text-transform: uppercase; }
     .set-row  { display: grid; grid-template-columns: 34px 1fr 1.1fr 1fr; gap: 4px;
@@ -147,8 +151,6 @@
     .set-inp:focus { border-color: #534AB7; outline: none; background: #fff; }
     .prev-hint { font-size: 11px; color: #1D9E75; margin-bottom: 6px;
                  margin-left: 38px; font-style: italic; }
-
-    /* ── Buttons ── */
     .save-btn {
       width: 100%; padding: 18px; border: none; border-radius: 16px;
       font-size: 16px; font-weight: 700; color: #fff; cursor: pointer;
@@ -164,12 +166,9 @@
       background: #fff; color: #6B6B8A; font-size: 15px; font-weight: 600;
       cursor: pointer; font-family: inherit; margin-bottom: 10px;
     }
-
-    /* ── Sync bar ── */
     .sync-bar {
       text-align: center; font-size: 12px; font-weight: 500;
-      padding: 8px 12px; border-radius: 10px; margin-top: 10px;
-      min-height: 0; transition: all .2s;
+      padding: 8px 12px; border-radius: 10px; margin-top: 10px; min-height: 0;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .spin {
@@ -177,8 +176,6 @@
       border: 2px solid currentColor; border-top-color: transparent;
       animation: spin .7s linear infinite; vertical-align: middle; margin-right: 5px;
     }
-
-    /* ── Progress ── */
     .pills      { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 20px;
                   padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
     .pills::-webkit-scrollbar { display: none; }
@@ -202,8 +199,6 @@
     .br-val     { font-size: 11px; width: 52px; text-align: right; }
     .diff-badge { border-radius: 10px; padding: 5px 10px; margin-left: 10px; flex-shrink: 0; }
     .diff-val   { font-size: 12px; font-weight: 700; }
-
-    /* ── Settings ── */
     .s-label { font-size: 13px; font-weight: 600; color: #6B6B8A; margin-bottom: 6px; }
     .s-input {
       width: 100%; height: 44px; border: 1px solid #E8E8F0; border-radius: 12px;
@@ -223,16 +218,8 @@
 <body>
 <div id="app"></div>
 <script>
-// ── Data ────────────────────────────────────────────────────────────────────
-const DAYS = [
-  { name:'Monday',    short:'MON', type:'Upper Body', key:'mon', color:'#534AB7', light:'#EEEDFE' },
-  { name:'Tuesday',   short:'TUE', type:'Lower Body', key:'tue', color:'#0F6E56', light:'#E1F5EE' },
-  { name:'Wednesday', short:'WED', type:'Abs & Core', key:'wed', color:'#993C1D', light:'#FAECE7' },
-  { name:'Thursday',  short:'THU', type:'Upper Body', key:'thu', color:'#534AB7', light:'#EEEDFE' },
-  { name:'Friday',    short:'FRI', type:'Lower Body', key:'fri', color:'#0F6E56', light:'#E1F5EE' },
-];
-
-const PHASES = [
+// ── Katie's program (existing) ───────────────────────────────────────────────
+const KATIE_PHASES = [
   { weeks:[1,2], label:'Phase 1: Foundation', short:'Foundation',
     note:'Focus on form. Use a weight that feels like a 6/10 effort. Learn every movement.' },
   { weeks:[3,4], label:'Phase 2: Load Up', short:'Load Up',
@@ -243,7 +230,7 @@ const PHASES = [
     note:'Push closer to failure. If top of rep range feels easy, add 5–10 lbs.' },
 ];
 
-const WK = {
+const KATIE_WK = {
   mon: {
     p1:[
       {name:'Dumbbell Chest Press',    sets:3,reps:'8-10', muscle:'Chest'},
@@ -262,11 +249,11 @@ const WK = {
   },
   tue: {
     p1:[
-      {name:'Goblet Squat',       sets:3,reps:'10-12',muscle:'Quads'},
-      {name:'Romanian Deadlift',  sets:3,reps:'10',   muscle:'Hamstrings'},
-      {name:'Leg Press',          sets:3,reps:'12',   muscle:'Quads'},
-      {name:'Leg Curl',           sets:2,reps:'12',   muscle:'Hamstrings'},
-      {name:'Calf Raise',         sets:3,reps:'15',   muscle:'Calves'},
+      {name:'Goblet Squat',      sets:3,reps:'10-12',muscle:'Quads'},
+      {name:'Romanian Deadlift', sets:3,reps:'10',   muscle:'Hamstrings'},
+      {name:'Leg Press',         sets:3,reps:'12',   muscle:'Quads'},
+      {name:'Leg Curl',          sets:2,reps:'12',   muscle:'Hamstrings'},
+      {name:'Calf Raise',        sets:3,reps:'15',   muscle:'Calves'},
     ],
     p3:[
       {name:'Barbell Back Squat',    sets:4,reps:'6-8',muscle:'Quads'},
@@ -326,33 +313,154 @@ const WK = {
   },
 };
 
-const getPhase   = w  => PHASES.find(p=>p.weeks.includes(w))||PHASES[3];
-const getWorkout = (k,w) => { const d=WK[k]; return d?(w>=5?(d.p3||d.p1):d.p1):[]; };
-const lk         = (w,d,ei,si,f) => `${w}|${d}|${ei}|${si}|${f}`;
-const getL       = (w,d,ei,si,f) => S.logs[lk(w,d,ei,si,f)]||'';
-const hasDone    = (w,dk) => getWorkout(dk,w).some((ex,ei)=>
+// ── Andy's program (37M, 285 lbs, 6ft — fat loss + muscle build) ────────────
+// Emphasis: compound movements, metabolic load, core stability, 60-90s rest
+const ANDY_PHASES = [
+  { weeks:[1,2], label:'Phase 1: Foundation', short:'Foundation',
+    note:'Learn the movements. Rest 60-90s between sets to keep heart rate up. Pick a weight you can control perfectly — consistency this phase builds the habit.' },
+  { weeks:[3,4], label:'Phase 2: Load Up', short:'Load Up',
+    note:'Add 5-10 lbs to upper body, 10-20 lbs to lower body vs Phase 1. Keep rests to 60s — this elevates heart rate and maximises calorie burn.' },
+  { weeks:[5,6], label:'Phase 3: Volume', short:'Volume',
+    note:'More sets = more total work = more fat burned. Hold Phase 2 weights and add the extra sets. This is where body composition starts shifting noticeably.' },
+  { weeks:[7,8], label:'Phase 4: Intensity', short:'Intensity',
+    note:'Push close to failure, 60s rest max. Your metabolism stays elevated for hours post-workout. Trust the process — you\'ve earned this phase.' },
+];
+
+const ANDY_WK = {
+  // Monday — Upper Body: Chest, Back, Shoulders (big compound movements)
+  mon: {
+    p1:[
+      {name:'Barbell Bench Press',     sets:3,reps:'10-12',muscle:'Chest'},
+      {name:'Barbell Bent-Over Row',   sets:3,reps:'10-12',muscle:'Back'},
+      {name:'Lat Pulldown',            sets:3,reps:'12',   muscle:'Back'},
+      {name:'Dumbbell Shoulder Press', sets:3,reps:'12',   muscle:'Shoulders'},
+      {name:'Cable Face Pull',         sets:3,reps:'15',   muscle:'Rear Delts'},
+    ],
+    p3:[
+      {name:'Barbell Bench Press',     sets:4,reps:'8-10', muscle:'Chest'},
+      {name:'Incline Dumbbell Press',  sets:3,reps:'10-12',muscle:'Chest'},
+      {name:'Barbell Bent-Over Row',   sets:4,reps:'10',   muscle:'Back'},
+      {name:'Lat Pulldown',            sets:3,reps:'12',   muscle:'Back'},
+      {name:'Cable Lateral Raise',     sets:3,reps:'15',   muscle:'Shoulders'},
+    ],
+  },
+  // Tuesday — Lower Body: Quads, Hamstrings, Calves (big calorie burn)
+  tue: {
+    p1:[
+      {name:'Goblet Squat',      sets:3,reps:'12-15',muscle:'Quads'},
+      {name:'Romanian Deadlift', sets:3,reps:'10-12',muscle:'Hamstrings'},
+      {name:'Leg Press',         sets:3,reps:'15',   muscle:'Quads'},
+      {name:'Leg Curl',          sets:3,reps:'12',   muscle:'Hamstrings'},
+      {name:'Calf Raise',        sets:3,reps:'20',   muscle:'Calves'},
+    ],
+    p3:[
+      {name:'Barbell Back Squat',    sets:4,reps:'8-10',muscle:'Quads'},
+      {name:'Romanian Deadlift',     sets:4,reps:'10',  muscle:'Hamstrings'},
+      {name:'Leg Press',             sets:3,reps:'15',  muscle:'Quads'},
+      {name:'Bulgarian Split Squat', sets:3,reps:'12',  muscle:'Glutes'},
+      {name:'Calf Raise',            sets:3,reps:'20',  muscle:'Calves'},
+    ],
+  },
+  // Wednesday — Core & Anti-Rotation (targets deep belly muscles)
+  wed: {
+    p1:[
+      {name:'Plank Hold',        sets:3,reps:'45s', muscle:'Core'},
+      {name:'Dead Bug',          sets:3,reps:'10',  muscle:'Deep Core'},
+      {name:'Bird Dog',          sets:3,reps:'10',  muscle:'Lower Back / Core'},
+      {name:'Pallof Press',      sets:3,reps:'15',  muscle:'Anti-Rotation Core'},
+      {name:'Mountain Climbers', sets:3,reps:'30s', muscle:'Core / Conditioning'},
+    ],
+    p3:[
+      {name:'Plank Hold',        sets:4,reps:'60s', muscle:'Core'},
+      {name:'Ab Wheel Rollout',  sets:3,reps:'10-12',muscle:'Core'},
+      {name:'Cable Crunch',      sets:3,reps:'15',  muscle:'Abs'},
+      {name:'Pallof Press',      sets:4,reps:'15',  muscle:'Anti-Rotation Core'},
+      {name:'Hanging Leg Raise', sets:3,reps:'12',  muscle:'Lower Abs'},
+    ],
+  },
+  // Thursday — Upper Body: Back, Biceps, Triceps
+  thu: {
+    p1:[
+      {name:'Dumbbell Row',         sets:3,reps:'12',   muscle:'Back'},
+      {name:'Lat Pulldown',         sets:3,reps:'12-15',muscle:'Back'},
+      {name:'Lateral Raise',        sets:3,reps:'15',   muscle:'Shoulders'},
+      {name:'Bicep Curl',           sets:3,reps:'12',   muscle:'Biceps'},
+      {name:'Tricep Pushdown',      sets:3,reps:'12',   muscle:'Triceps'},
+    ],
+    p3:[
+      {name:'Assisted Pull-Up',        sets:3,reps:'8-10', muscle:'Back'},
+      {name:'Seated Cable Row',        sets:4,reps:'10-12',muscle:'Back'},
+      {name:'Lateral Raise',           sets:3,reps:'15',   muscle:'Shoulders'},
+      {name:'Hammer Curl',             sets:3,reps:'12',   muscle:'Biceps'},
+      {name:'Overhead Tricep Ext.',    sets:3,reps:'12',   muscle:'Triceps'},
+    ],
+  },
+  // Friday — Posterior Chain + Metabolic Finisher (Farmer's Carry torches calories)
+  fri: {
+    p1:[
+      {name:'Hip Thrust (DB)',   sets:3,reps:'12-15',muscle:'Glutes'},
+      {name:'Romanian Deadlift', sets:3,reps:'10-12',muscle:'Hamstrings'},
+      {name:'Leg Press',         sets:3,reps:'15',   muscle:'Quads'},
+      {name:'Leg Extension',     sets:3,reps:'12',   muscle:'Quads'},
+      {name:"Farmer's Carry",    sets:3,reps:'40s',  muscle:'Full Body / Core'},
+    ],
+    p3:[
+      {name:'Deadlift',            sets:4,reps:'6-8',  muscle:'Full Body'},
+      {name:'Barbell Hip Thrust',  sets:4,reps:'10-12',muscle:'Glutes'},
+      {name:'Leg Press',           sets:3,reps:'15',   muscle:'Quads'},
+      {name:'Leg Curl',            sets:3,reps:'12',   muscle:'Hamstrings'},
+      {name:"Farmer's Carry",      sets:3,reps:'40s',  muscle:'Full Body / Core'},
+    ],
+  },
+};
+
+// ── Shared day definitions ───────────────────────────────────────────────────
+const DAYS = [
+  { name:'Monday',    short:'MON', type:'Upper Body', key:'mon', color:'#534AB7', light:'#EEEDFE' },
+  { name:'Tuesday',   short:'TUE', type:'Lower Body', key:'tue', color:'#0F6E56', light:'#E1F5EE' },
+  { name:'Wednesday', short:'WED', type:'Core',       key:'wed', color:'#993C1D', light:'#FAECE7' },
+  { name:'Thursday',  short:'THU', type:'Upper Body', key:'thu', color:'#534AB7', light:'#EEEDFE' },
+  { name:'Friday',    short:'FRI', type:'Lower Body', key:'fri', color:'#0F6E56', light:'#E1F5EE' },
+];
+
+// Andy's Wed is "Core & Conditioning" — adjust type label per user
+function getDayType(key, user) {
+  if (user === 'andy' && key === 'wed') return 'Core & Conditioning';
+  const d = DAYS.find(d => d.key === key);
+  return d ? d.type : '';
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+const getPhase   = (w, u) => (u==='andy'?ANDY_PHASES:KATIE_PHASES).find(p=>p.weeks.includes(w)) || (u==='andy'?ANDY_PHASES:KATIE_PHASES)[3];
+const getWorkout = (k, w, u) => { const wk=u==='andy'?ANDY_WK:KATIE_WK; const d=wk[k]; return d?(w>=5?(d.p3||d.p1):d.p1):[]; };
+const lk         = (u,w,d,ei,si,f) => `${u}|${w}|${d}|${ei}|${si}|${f}`;
+const getL       = (w,d,ei,si,f) => S.logs[lk(S.user,w,d,ei,si,f)]||'';
+const hasDone    = (w,dk) => getWorkout(dk,w,S.user).some((ex,ei)=>
   Array.from({length:ex.sets}).some((_,si)=>getL(w,dk,ei,si,'weight')));
 const esc        = s => String(s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const curWeek    = () => S.weeks[S.user] || 1;
+const setWeek    = w => { S.weeks[S.user] = w; };
 
 // ── State ────────────────────────────────────────────────────────────────────
 const S = {
   screen: 'home', params: {},
-  week:    parseInt(localStorage.getItem('wt_week'))||1,
-  logs:    JSON.parse(localStorage.getItem('wt_logs')||'{}'),
-  ghToken: localStorage.getItem('wt_ghToken')||'',
-  ghRepo:  localStorage.getItem('wt_ghRepo')||'',
-  ghSha:   null,
-  sync:    'idle',   // idle | loading | saving | saved | error
-  syncMsg: '',
-  progDay: 'mon',
+  user:   localStorage.getItem('wt_user') || 'katie',
+  weeks:  JSON.parse(localStorage.getItem('wt_weeks') || '{"katie":1,"andy":1}'),
+  logs:   JSON.parse(localStorage.getItem('wt_logs')  || '{}'),
+  ghToken:localStorage.getItem('wt_ghToken') || '',
+  ghRepo: localStorage.getItem('wt_ghRepo')  || '',
+  ghSha:  null,
+  sync:   'idle', syncMsg: '',
+  progDay:'mon',
 };
 
 function go(scr, params={}) { S.screen=scr; S.params=params; render(); window.scrollTo(0,0); }
 
 function persist() {
-  localStorage.setItem('wt_logs', JSON.stringify(S.logs));
-  localStorage.setItem('wt_week', S.week);
+  localStorage.setItem('wt_logs',  JSON.stringify(S.logs));
+  localStorage.setItem('wt_weeks', JSON.stringify(S.weeks));
+  localStorage.setItem('wt_user',  S.user);
 }
 
 // ── GitHub API ───────────────────────────────────────────────────────────────
@@ -364,19 +472,17 @@ async function ghLoad() {
   setSyncStatus('loading','Syncing from GitHub…');
   try {
     const r = await fetch(`${GH_API}/repos/${S.ghRepo}/contents/${GH_FILE}`,
-      { headers:{ Authorization:`token ${S.ghToken}`, Accept:'application/vnd.github.v3+json' } });
+      {headers:{Authorization:`token ${S.ghToken}`,Accept:'application/vnd.github.v3+json'}});
     if (r.status===404) { setSyncStatus('idle',''); return; }
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     const f   = await r.json();
     S.ghSha   = f.sha;
     const raw = JSON.parse(atob(f.content.replace(/\s/g,'')));
-    if (raw.logs) { S.logs = raw.logs; }
-    if (raw.week) { S.week = raw.week; }
+    if (raw.logs)  S.logs  = raw.logs;
+    if (raw.weeks) S.weeks = raw.weeks;
     persist();
     setSyncStatus('saved','✓ Synced with GitHub');
-  } catch(e) {
-    setSyncStatus('error','GitHub load failed: '+e.message);
-  }
+  } catch(e) { setSyncStatus('error','Load failed: '+e.message); }
   render();
 }
 
@@ -384,48 +490,46 @@ async function ghSave() {
   if (!S.ghToken||!S.ghRepo) return;
   setSyncStatus('saving','Saving to GitHub…');
   try {
-    const payload = { version:1, week:S.week, logs:S.logs, savedAt:new Date().toISOString() };
+    const payload = { version:2, weeks:S.weeks, logs:S.logs, savedAt:new Date().toISOString() };
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(payload,null,2))));
     const body    = { message:`Workout log ${new Date().toISOString().slice(0,10)}`, content };
     if (S.ghSha) body.sha = S.ghSha;
     const r = await fetch(`${GH_API}/repos/${S.ghRepo}/contents/${GH_FILE}`, {
       method:'PUT',
-      headers:{ Authorization:`token ${S.ghToken}`, 'Content-Type':'application/json' },
-      body: JSON.stringify(body),
+      headers:{Authorization:`token ${S.ghToken}`,'Content-Type':'application/json'},
+      body:JSON.stringify(body),
     });
-    if (!r.ok) { const t=await r.text(); throw new Error(`HTTP ${r.status}: ${t.slice(0,120)}`); }
-    const res = await r.json();
-    S.ghSha = res.content.sha;
+    if (!r.ok) { const t=await r.text(); throw new Error(`HTTP ${r.status}: ${t.slice(0,100)}`); }
+    S.ghSha = (await r.json()).content.sha;
     setSyncStatus('saved','✓ Saved to GitHub');
-  } catch(e) {
-    setSyncStatus('error','Save failed: '+e.message);
-  }
+  } catch(e) { setSyncStatus('error','Save failed: '+e.message); }
   updateSyncBar();
 }
 
 function setSyncStatus(s,msg) { S.sync=s; S.syncMsg=msg; updateSyncBar(); }
-
 function updateSyncBar() {
   document.querySelectorAll('.sync-bar').forEach(el => {
     if (!S.ghToken||S.sync==='idle') { el.style.display='none'; return; }
     el.style.display='block';
-    const bg   = {loading:'#EEEDFE',saving:'#EEEDFE',saved:'#E1F5EE',error:'#FAECE7'}[S.sync]||'';
-    const col  = {loading:'#534AB7',saving:'#534AB7',saved:'#0F6E56',error:'#993C1D'}[S.sync]||'#6B6B8A';
-    el.style.background = bg;
-    el.style.color = col;
-    const spin = (S.sync==='loading'||S.sync==='saving') ? '<span class="spin"></span>' : '';
-    el.innerHTML = spin + esc(S.syncMsg);
+    const bg  = {loading:'#EEEDFE',saving:'#EEEDFE',saved:'#E1F5EE',error:'#FAECE7'}[S.sync]||'';
+    const col = {loading:'#534AB7',saving:'#534AB7',saved:'#0F6E56',error:'#993C1D'}[S.sync]||'#6B6B8A';
+    el.style.background=bg; el.style.color=col;
+    const sp = (S.sync==='loading'||S.sync==='saving')?'<span class="spin"></span>':'';
+    el.innerHTML = sp + esc(S.syncMsg);
   });
 }
 
 // ── Screens ──────────────────────────────────────────────────────────────────
-
 function renderHome() {
-  const ph = getPhase(S.week);
+  const w  = curWeek();
+  const ph = getPhase(w, S.user);
+  const isAndy = S.user === 'andy';
+
   const cards = DAYS.map(d => {
-    const exs  = getWorkout(d.key,S.week);
-    const sets = exs.reduce((a,e)=>a+e.sets,0);
-    const done = hasDone(S.week,d.key);
+    const exs  = getWorkout(d.key, w, S.user);
+    const sets = exs.reduce((a,e)=>a+e.sets, 0);
+    const done = hasDone(w, d.key);
+    const type = getDayType(d.key, S.user);
     return `<div class="day-card" data-a="go-workout" data-day="${d.key}">
       <div class="day-bar" style="background:${d.color}"></div>
       <div class="day-info">
@@ -433,12 +537,16 @@ function renderHome() {
           <span class="day-name">${d.name}</span>
           ${done?'<span class="done-badge">✓ Logged</span>':''}
         </div>
-        <div class="day-type">${d.type}</div>
+        <div class="day-type">${type}</div>
         <div class="day-meta">${exs.length} exercises · ${sets} sets</div>
       </div>
       <div class="day-chev">›</div>
     </div>`;
   }).join('');
+
+  const goalChip = isAndy
+    ? `<div class="goal-chip">🎯 Goal: 200–225 lbs · Muscle + Fat Loss</div>`
+    : '';
 
   return `<div class="screen">
     <div class="hdr-wrap">
@@ -446,20 +554,30 @@ function renderHome() {
       <div class="sub">Progressive Overload · 30 min sessions</div>
       <button class="gear-btn" data-a="go-settings">⚙️</button>
     </div>
+
+    <div class="user-toggle">
+      <button class="user-btn ${S.user==='katie'?'active':''}" data-a="set-user" data-user="katie">Katie</button>
+      <button class="user-btn ${S.user==='andy' ?'active':''}" data-a="set-user" data-user="andy">Andy</button>
+    </div>
+
+    ${goalChip}
     <div class="sync-bar" style="display:none"></div>
+
     <div class="week-card">
       <div class="wc-label">Current Week</div>
       <div class="wc-row">
-        <button class="wc-btn" data-a="week-dec" ${S.week<=1?'disabled':''}>‹</button>
-        <div><div class="wc-num">${S.week}</div><div class="wc-of">of 8</div></div>
-        <button class="wc-btn" data-a="week-inc" ${S.week>=8?'disabled':''}>›</button>
+        <button class="wc-btn" data-a="week-dec" ${w<=1?'disabled':''}>‹</button>
+        <div><div class="wc-num">${w}</div><div class="wc-of">of 8</div></div>
+        <button class="wc-btn" data-a="week-inc" ${w>=8?'disabled':''}>›</button>
       </div>
       <div class="phase-pill">${ph.short}</div>
     </div>
-    <div class="phase-note">
+
+    <div class="phase-note ${isAndy?'andy':''}">
       <div class="pn-title">${ph.label}</div>
       <div class="pn-body">${ph.note}</div>
     </div>
+
     <div class="sec">This Week's Workouts</div>
     ${cards}
     <button class="progress-btn" data-a="go-progress">📈&nbsp; View Progress Charts</button>
@@ -469,15 +587,17 @@ function renderHome() {
 function renderWorkout() {
   const dk  = S.params.day;
   const day = DAYS.find(d=>d.key===dk);
-  const exs = getWorkout(dk,S.week);
-  const ph  = getPhase(S.week);
+  const w   = curWeek();
+  const exs = getWorkout(dk, w, S.user);
+  const ph  = getPhase(w, S.user);
+  const type = getDayType(dk, S.user);
 
   const exHtml = exs.map((ex,ei) => {
-    const setsHtml = Array.from({length:ex.sets}).map((_,si) => {
-      const wv = esc(getL(S.week,dk,ei,si,'weight'));
-      const rv = esc(getL(S.week,dk,ei,si,'reps'));
-      const pw = getL(S.week-1,dk,ei,si,'weight');
-      const pr = getL(S.week-1,dk,ei,si,'reps');
+    const rows = Array.from({length:ex.sets}).map((_,si) => {
+      const wv = esc(getL(w,dk,ei,si,'weight'));
+      const rv = esc(getL(w,dk,ei,si,'reps'));
+      const pw = getL(w-1,dk,ei,si,'weight');
+      const pr = getL(w-1,dk,ei,si,'reps');
       const hint = (pw||pr)?`<div class="prev-hint">Last week: ${pw||'—'} lbs × ${pr||'—'} reps</div>`:'';
       return `<div class="set-row">
         <div class="set-circ" style="background:${day.light}">
@@ -485,12 +605,11 @@ function renderWorkout() {
         </div>
         <span class="set-tgt">${ex.reps}</span>
         <input class="set-inp" type="number" inputmode="decimal" placeholder="—"
-          value="${wv}" data-log="${lk(S.week,dk,ei,si,'weight')}" />
+          value="${wv}" data-log="${lk(S.user,w,dk,ei,si,'weight')}" />
         <input class="set-inp" type="number" inputmode="numeric" placeholder="—"
-          value="${rv}" data-log="${lk(S.week,dk,ei,si,'reps')}" />
+          value="${rv}" data-log="${lk(S.user,w,dk,ei,si,'reps')}" />
       </div>${hint}`;
     }).join('');
-
     const yt = `https://www.youtube.com/results?search_query=${encodeURIComponent(ex.name+' exercise form')}`;
     return `<div class="ex-card">
       <div class="ex-hdr">
@@ -501,17 +620,17 @@ function renderWorkout() {
         <div class="sh-cell">Set</div><div class="sh-cell">Target</div>
         <div class="sh-cell">Wt lbs</div><div class="sh-cell">Reps</div>
       </div>
-      ${setsHtml}
+      ${rows}
     </div>`;
   }).join('');
 
   return `<div class="screen">
     <button class="back-btn" data-a="go-home">‹ Back</button>
-    <div class="title" style="font-size:20px;margin-bottom:14px">${day.name} · Week ${S.week}</div>
+    <div class="title" style="font-size:20px;margin-bottom:14px">${day.name} · Week ${w}</div>
     <div class="day-hdr" style="background:${day.light}">
       <div class="day-dot" style="background:${day.color}"></div>
       <div>
-        <div class="dh-title" style="color:${day.color}">${day.type}</div>
+        <div class="dh-title" style="color:${day.color}">${type}</div>
         <div class="dh-sub"   style="color:${day.color}">${ph.short} · 30 min</div>
       </div>
     </div>
@@ -522,38 +641,38 @@ function renderWorkout() {
 }
 
 function renderProgress() {
+  const w   = curWeek();
   const day = DAYS.find(d=>d.key===S.progDay);
-  const exs = getWorkout(S.progDay, S.week>=5?5:1);
+  const exs = getWorkout(S.progDay, w>=5?5:1, S.user);
 
   const bars = Array.from({length:8}).map((_,i) => {
-    const w    = i+1;
-    const wExs = getWorkout(S.progDay, w>=5?5:1);
+    const wk   = i+1;
+    const wExs = getWorkout(S.progDay, wk>=5?5:1, S.user);
     let tot=0,cnt=0;
-    wExs.forEach((ex,ei)=>{ for(let si=0;si<ex.sets;si++){
-      const v=parseFloat(getL(w,S.progDay,ei,si,'weight'))||0;
+    wExs.forEach((ex,ei)=>{for(let si=0;si<ex.sets;si++){
+      const v=parseFloat(getL(wk,S.progDay,ei,si,'weight'))||0;
       if(v>0){tot+=v;cnt++;}
     }});
-    return {w, avg: cnt>0?tot/cnt:0};
+    return {wk, avg:cnt>0?tot/cnt:0};
   });
   const mx = Math.max(...bars.map(b=>b.avg),1);
 
   const barHtml = bars.map(b=>{
-    const h   = b.avg>0 ? Math.max(6,(b.avg/mx)*100) : 4;
-    const cur = b.w===S.week;
+    const h  = b.avg>0?Math.max(6,(b.avg/mx)*100):4;
+    const cur= b.wk===w;
     return `<div class="bar-col">
       ${b.avg>0?`<div class="bar-val">${Math.round(b.avg)}</div>`:''}
       <div class="bar-rect" style="height:${h}px;background:${cur?day.color:day.color+'55'}"></div>
-      <div class="bar-lbl" style="color:${cur?day.color:'#A0A0B8'};font-weight:${cur?700:400}">W${b.w}</div>
+      <div class="bar-lbl" style="color:${cur?day.color:'#A0A0B8'};font-weight:${cur?700:400}">W${b.wk}</div>
     </div>`;
   }).join('');
 
   const cmp = exs.map((ex,ei)=>{
     let cT=0,cC=0,pT=0,pC=0;
     for(let si=0;si<ex.sets;si++){
-      const cw=parseFloat(getL(S.week,  S.progDay,ei,si,'weight'))||0;
-      const pw=parseFloat(getL(S.week-1,S.progDay,ei,si,'weight'))||0;
-      if(cw>0){cT+=cw;cC++;}
-      if(pw>0){pT+=pw;pC++;}
+      const cw=parseFloat(getL(w,  S.progDay,ei,si,'weight'))||0;
+      const pw=parseFloat(getL(w-1,S.progDay,ei,si,'weight'))||0;
+      if(cw>0){cT+=cw;cC++;} if(pw>0){pT+=pw;pC++;}
     }
     return {name:ex.name, curr:cC>0?cT/cC:0, prev:pC>0?pT/pC:0};
   });
@@ -561,31 +680,22 @@ function renderProgress() {
   const cmpHtml = cmp.every(e=>e.curr===0&&e.prev===0)
     ? '<div style="text-align:center;color:#A0A0B8;font-size:14px;padding:20px 0">Log some workouts to see comparisons!</div>'
     : cmp.filter(e=>e.curr>0||e.prev>0).map(ex=>{
-        const diff = ex.curr-ex.prev;
-        const pct  = ex.prev>0 ? Math.min(100,Math.round(ex.curr/ex.prev*100)) : 100;
-        const diffBadge = (ex.curr>0&&ex.prev>0)
-          ? `<div class="diff-badge" style="background:${diff>=0?'#E1F5EE':'#FAECE7'}">
-               <span class="diff-val" style="color:${diff>=0?'#0F6E56':'#993C1D'}">${diff>=0?'+':''}${Math.round(diff)} lbs</span>
-             </div>` : '';
+        const diff=ex.curr-ex.prev;
+        const pct =ex.prev>0?Math.min(100,Math.round(ex.curr/ex.prev*100)):100;
+        const badge=(ex.curr>0&&ex.prev>0)
+          ?`<div class="diff-badge" style="background:${diff>=0?'#E1F5EE':'#FAECE7'}">
+              <span class="diff-val" style="color:${diff>=0?'#0F6E56':'#993C1D'}">${diff>=0?'+':''}${Math.round(diff)} lbs</span>
+            </div>`:'';
         return `<div class="ex-cmp">
           <div style="flex:1">
             <div class="cmp-name">${esc(ex.name)}</div>
-            ${ex.prev>0?`<div class="bar-row">
-              <span class="br-lbl">Last wk</span>
-              <div class="br-track"><div class="br-fill" style="width:100%;background:#E8E8F0"></div></div>
-              <span class="br-val" style="color:#6B6B8A">${Math.round(ex.prev)} lbs</span>
-            </div>`:''}
-            ${ex.curr>0?`<div class="bar-row">
-              <span class="br-lbl" style="color:${day.color}">This wk</span>
-              <div class="br-track"><div class="br-fill" style="width:${ex.prev>0?pct:100}%;background:${day.color}"></div></div>
-              <span class="br-val" style="color:${day.color}">${Math.round(ex.curr)} lbs</span>
-            </div>`:''}
-          </div>
-          ${diffBadge}
+            ${ex.prev>0?`<div class="bar-row"><span class="br-lbl">Last wk</span><div class="br-track"><div class="br-fill" style="width:100%;background:#E8E8F0"></div></div><span class="br-val" style="color:#6B6B8A">${Math.round(ex.prev)} lbs</span></div>`:''}
+            ${ex.curr>0?`<div class="bar-row"><span class="br-lbl" style="color:${day.color}">This wk</span><div class="br-track"><div class="br-fill" style="width:${ex.prev>0?pct:100}%;background:${day.color}"></div></div><span class="br-val" style="color:${day.color}">${Math.round(ex.curr)} lbs</span></div>`:''}
+          </div>${badge}
         </div>`;
       }).join('');
 
-  const pillHtml = DAYS.map(d=>
+  const pills = DAYS.map(d=>
     `<button class="pill" data-a="prog-day" data-day="${d.key}"
       style="${S.progDay===d.key?`background:${d.color};color:#fff;border-color:${d.color}`:''}">
       ${d.short}
@@ -594,10 +704,10 @@ function renderProgress() {
   return `<div class="screen">
     <button class="back-btn" data-a="go-home">‹ Back</button>
     <div class="title" style="margin-bottom:16px">Progress</div>
-    <div class="pills">${pillHtml}</div>
+    <div class="pills">${pills}</div>
     <div class="card">
       <div style="font-size:15px;font-weight:700">Avg Weight Per Session (lbs)</div>
-      <div style="font-size:12px;color:#6B6B8A;margin-top:2px">${day.name} · ${day.type}</div>
+      <div style="font-size:12px;color:#6B6B8A;margin-top:2px">${day.name} · ${getDayType(S.progDay,S.user)}</div>
       <div class="bar-chart">${barHtml}</div>
     </div>
     <div class="sec">This Week vs Last Week</div>
@@ -609,20 +719,21 @@ function renderSettings() {
   return `<div class="screen">
     <button class="back-btn" data-a="go-home">‹ Back</button>
     <div class="title" style="margin-bottom:4px">Settings</div>
-    <div class="sub" style="margin-bottom:28px">Connect GitHub to back up your data automatically on every save</div>
+    <div class="sub" style="margin-bottom:28px">Connect GitHub to back up both profiles automatically</div>
 
     <div class="s-label">GitHub Personal Access Token</div>
     <input class="s-input" id="s-token" type="password" placeholder="ghp_xxxxxxxxxxxx"
-      value="${esc(S.ghToken)}" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" />
+      value="${esc(S.ghToken)}" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"/>
     <div class="s-hint">
-      Go to <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">GitHub → Settings → Developer settings → Fine-grained tokens</a>.
-      Set <strong>Contents</strong> permission to <strong>Read and write</strong> on your repo.
+      <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">
+        GitHub → Settings → Developer settings → Fine-grained tokens
+      </a> — set <strong>Contents: Read and write</strong>.
     </div>
 
     <div class="s-label">Repository (username/repo-name)</div>
     <input class="s-input" id="s-repo" placeholder="andrewjcornish/workout-tracker"
-      value="${esc(S.ghRepo)}" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" />
-    <div class="s-hint">Your workout data will be saved as <strong>workout-data.json</strong> in this repo.</div>
+      value="${esc(S.ghRepo)}" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"/>
+    <div class="s-hint">Both Katie's and Andy's data are saved together in <strong>workout-data.json</strong>.</div>
 
     <button class="primary-btn" data-a="save-settings">Save & Sync from GitHub</button>
     ${S.ghToken?'<button class="secondary-btn" data-a="force-push">Push data to GitHub now</button>':''}
@@ -643,52 +754,53 @@ function render() {
   updateSyncBar();
 }
 
-// ── Event handling ────────────────────────────────────────────────────────────
+// ── Events ───────────────────────────────────────────────────────────────────
 document.addEventListener('click', e => {
   const el = e.target.closest('[data-a]');
   if (!el) return;
   const a = el.dataset.a;
 
-  if (a==='go-workout') go('workout',{day:el.dataset.day});
-  if (a==='go-home')    go('home');
-  if (a==='go-settings')go('settings');
-  if (a==='go-progress'){ S.progDay='mon'; go('progress'); }
-  if (a==='prog-day')   { S.progDay=el.dataset.day; render(); }
+  if (a==='set-user') {
+    S.user = el.dataset.user;
+    localStorage.setItem('wt_user', S.user);
+    render();
+  }
+  if (a==='go-workout')  go('workout',{day:el.dataset.day});
+  if (a==='go-home')     go('home');
+  if (a==='go-settings') go('settings');
+  if (a==='go-progress') { S.progDay='mon'; go('progress'); }
+  if (a==='prog-day')    { S.progDay=el.dataset.day; render(); }
 
-  if (a==='week-dec' && S.week>1) { S.week--; persist(); render(); }
-  if (a==='week-inc' && S.week<8) { S.week++; persist(); render(); }
+  if (a==='week-dec' && curWeek()>1) { setWeek(curWeek()-1); persist(); render(); }
+  if (a==='week-inc' && curWeek()<8) { setWeek(curWeek()+1); persist(); render(); }
 
   if (a==='save') {
-    const btn = document.getElementById('save-btn');
-    if (btn) { btn.textContent='✓ Saved!'; btn.style.background='#1D9E75'; }
+    const btn=document.getElementById('save-btn');
+    if(btn){btn.textContent='✓ Saved!';btn.style.background='#1D9E75';}
     persist();
     ghSave();
   }
 
   if (a==='save-settings') {
-    S.ghToken = (document.getElementById('s-token').value||'').trim();
-    S.ghRepo  = (document.getElementById('s-repo').value||'').trim();
-    localStorage.setItem('wt_ghToken', S.ghToken);
-    localStorage.setItem('wt_ghRepo',  S.ghRepo);
-    render(); // re-render so "push" button appears if token set
+    S.ghToken=(document.getElementById('s-token').value||'').trim();
+    S.ghRepo =(document.getElementById('s-repo').value||'').trim();
+    localStorage.setItem('wt_ghToken',S.ghToken);
+    localStorage.setItem('wt_ghRepo', S.ghRepo);
+    render();
     ghLoad();
   }
-
   if (a==='force-push') ghSave();
-
   if (a==='clear-data') {
-    if (!confirm('Clear all saved workout data from this device?')) return;
-    S.logs={}; S.week=1; S.ghSha=null;
-    persist();
-    go('home');
+    if(!confirm('Clear all saved workout data from this device?')) return;
+    S.logs={}; S.weeks={katie:1,andy:1}; S.ghSha=null;
+    persist(); go('home');
   }
 });
 
-// Update logs live as user types — no re-render needed
+// Live-update logs on input — no re-render needed
 document.addEventListener('input', e => {
   if (e.target.dataset.log) {
     S.logs[e.target.dataset.log] = e.target.value;
-    // auto-save to localStorage silently
     localStorage.setItem('wt_logs', JSON.stringify(S.logs));
   }
 });
